@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  dnsmasq:
+    image: roshangara/dnsmasq:latest
+    container_name: roshangara-dnsmasq
+    restart: always
+    environment:
+      - TZ=Asia/Tehran
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+      - ./proxy.conf:/etc/dnsmasq.d/proxy.conf
+    ports:
+      - "53:53"
+      - "53:53/udp"
